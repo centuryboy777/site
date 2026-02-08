@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         payBtn.innerHTML = 'Finalizing Order...';
 
         try {
-            const apiUrl = `https://api.centuryboy.shop/paystack/verify`;
+            const apiUrl = `https://centuryboy.shop/paystack/verify`;
             console.log(`Verifying payment via ${apiUrl}...`);
 
             const response = await fetch(apiUrl, {
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // DIRECT API CONNECTION
-            const initUrl = "https://api.centuryboy.shop/paystack/initialize";
+            const initUrl = "https://centuryboy.shop/paystack/initialize";
             console.log(`Initializing Payment via ${initUrl}...`);
 
             const response = await fetch(initUrl);
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const config = await response.json();
 
             payBtn.innerHTML = 'Opening Secure Shield...';
-            payWithPaystack(totalAmount, email, config.publicKey, "https://api.centuryboy.shop");
+            payWithPaystack(totalAmount, email, config.publicKey, "https://centuryboy.shop");
 
         } catch (error) {
             console.error("Connection Error:", error);

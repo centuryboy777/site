@@ -20,7 +20,7 @@ Since you already have the files, the easiest way to deploy is to upload them to
 
 ### 3. Connect your Domain (centuryboy.shop)
 1.  In Vercel, go to your Project > **Settings** > **Domains**.
-2.  Add `www.centuryboy.shop` and `api.centuryboy.shop`.
+2.  Add **`www.centuryboy.shop`** and **`centuryboy.shop`**.
 3.  Vercel will show you the **DNS Records** (CNAME or A records) to add to your domain provider (e.g., Godaddy, Namecheap).
 
 ### 4. 🔒 Secure Secrets Management
