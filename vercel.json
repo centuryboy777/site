@@ -24,15 +24,7 @@
     ],
     "routes": [
         {
-            "src": "/paystack/(.*)",
-            "dest": "server.js"
-        },
-        {
             "src": "/health",
-            "dest": "server.js"
-        },
-        {
-            "src": "/config",
             "dest": "server.js"
         },
         {
