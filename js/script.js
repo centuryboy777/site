@@ -4,79 +4,173 @@
 
 const products = [
   // AIRPODS
-  { id: 1, name: "AirPods Pro 3", oldPrice: 500, price: 340, category: "airpods", badge: "🔥 HOT SALES", img: "assets/airpods-pro-3.jpg" },
-  { id: 2, name: "AirPods Pro 2", oldPrice: 280, price: 190, category: "airpods", badge: "🔥 HOT SALES", img: "assets/photo_2026-02-02_23-25-49.jpg" },
-  { id: 3, name: "AirPods 3", oldPrice: 230, price: 170, category: "airpods", badge: "IOS 26 VERIFIED", img: "assets/airpods3.jpg" },
-  { id: 4, name: "AirPods Pro", oldPrice: 200, price: 160, category: "airpods", badge: "IOS 26 VERIFIED", img: "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=400&fit=crop&q=80" },
-  { id: 5, name: "AirPods 4", oldPrice: 350, price: 260, category: "airpods", badge: "IOS 26 VERIFIED", img: "assets/airpods4.jpg" },
-  { id: 6, name: "AirPods Max", price: 1800, category: "airpods", badge: "IOS 26 VERIFIED", img: "assets/max.webp" },
+  { id: 1, name: "AirPods Pro 3", price: 340, oldPrice: 500, category: "airpods", badge: "IOS 26 VERIFIED", img: "assets/airpods-pro-3.jpg", rating: 5.0, stars: 5, reviewCount: 128, soldCount: 450, stock: 12, specs: { driver: "Custom High-Excursion", battery: "6hrs (30hrs w/ Case)", chip: "H2 Apple Silicon", charging: "MagSafe / USB-C", sensors: "Skin-detect / Motion" } },
+  { id: 2, name: "AirPods Pro 2", price: 190, oldPrice: 280, category: "airpods", badge: "BEST SELLER", img: "assets/airpods-pro-2-gen.jpg", rating: 4.8, stars: 5, reviewCount: 215, soldCount: 1200, stock: 5, specs: { driver: "Low-Distortion", battery: "6hrs (30hrs w/ Case)", chip: "H2 Chip", charging: "Lightning / MagSafe", transparency: "Adaptive" } },
+  { id: 3, name: "AirPods Pro", price: 160, oldPrice: 200, category: "airpods", badge: "V.1 LIMITED", img: "assets/airpods-pro-v1.jpg", rating: 4.7, stars: 4, reviewCount: 89, soldCount: 800, stock: 3, specs: { driver: "High-Excursion", battery: "4.5hrs (24hrs w/ Case)", chip: "H1 Chip", charging: "Lightning", anc: "Active" } },
+  { id: 4, name: "AirPods 3", price: 170, oldPrice: 230, category: "airpods", badge: "POPULAR", img: "assets/airpods-3-new.webp", rating: 4.8, stars: 5, reviewCount: 64, soldCount: 320, stock: 15, specs: { audio: "Spatial Audio", battery: "6hrs Total", design: "Contoured", water: "IPX4", charging: "MagSafe Inc." } },
+  { id: 5, name: "AirPods 4", price: 260, oldPrice: 350, category: "airpods", badge: "BUDGET", img: "assets/airpods4.jpg", rating: 4.5, stars: 4, reviewCount: 156, soldCount: 2000, stock: 20, specs: { connection: "Instant Device Switch", battery: "5hrs Talk", chip: "H1", voice: "Always-on Siri", sensor: "Optical" } },
+  { id: 6, name: "AirPods Max", price: 1800, category: "airpods", badge: "ELITE PRODUCTS", img: "assets/max.webp", rating: 5.0, stars: 5, reviewCount: 42, soldCount: 110, stock: 2, specs: { driver: "40mm Dynamic", battery: "20hrs ANC", chip: "Dual H2", charging: "L-Port", build: "Mesh/Alu" } },
 
-  // CHARGERS 
-  { id: 7, name: "Type-C to Lightning Full Charger", price: 90, category: "chargers", badge: "ORIGINAL", img: "assets/iphone charger.jpg" },
-  { id: 8, name: "Type-C to Type-C Full Charger", price: 150, category: "chargers", badge: "ORIGINAL", img: "assets/type c to type c.jpg" },
-  { id: 9, name: "Type-C to Lightning Cable", price: 40, category: "chargers", badge: "ORIGINAL", img: "assets/lighning cable.webp" },
-  { id: 10, name: "Type-C to Type-C Cable", price: 60, category: "chargers", badge: "ORIGINAL", img: "assets/type cabel.jpg" },
-  { id: 11, name: "MacBook Charger", price: 350, category: "chargers", badge: "PREMIUM", img: "assets/mac charger.webp" },
-  { id: 12, name: "Powerbank 10,000mAh", price: 300, category: "accessories", badge: "WIRELESS", img: "assets/wireless powerbank.webp" },
-  { id: 13, name: "MagSafe Battery Pack", price: 170, category: "accessories", badge: "HOT", img: "assets/battery pack.jpg" },
+  // CHARGERS & ACCESSORIES
+  { id: 7, name: "20W USB-C Charger", price: 120, category: "chargers", badge: "ORIGINAL", img: "assets/iphone charger.jpg", rating: 4.5, stars: 5, reviewCount: 310, soldCount: 5000, stock: 20, specs: { output: "20W Max", port: "USB-C", safety: "PD 3.0", design: "Folding", weight: "55g" } },
+  { id: 9, name: "Charging Cable (C to L)", price: 4, category: "chargers", badge: "MFI CERTIFIED", img: "assets/lighning cable.webp", rating: 4.4, stars: 4, reviewCount: 115, soldCount: 750, stock: 50, specs: { length: "1m", build: "Braided", certification: "MFi", speed: "480Mbps", power: "30W Max" } },
+  { id: 10, name: "Type-C to Type-C Cable", price: 60, category: "chargers", badge: "ORIGINAL", img: "assets/type c to type c.jpg", rating: 4.3, stars: 4, reviewCount: 310, soldCount: 5000, stock: 45, specs: { length: "1m", build: "TPE", power: "60W Max", speed: "USB 2.0", sync: "Yes" } },
+  { id: 11, name: "MacBook Charger", price: 350, category: "chargers", badge: "PREMIUM", img: "assets/mac charger.webp", rating: 4.7, stars: 5, reviewCount: 22, soldCount: 45, stock: 10, specs: { output: "96W PD", port: "USB-C", cables: "Not Inc.", weight: "180g", safety: "Over-Volt" } },
+  { id: 13, name: "MagSafe Battery Pack", price: 170, category: "accessories", badge: "HOT", img: "assets/battery pack.jpg", rating: 4.9, stars: 5, reviewCount: 18, soldCount: 104, stock: 18, specs: { capacity: "5k mAh", snap: "Instant", charging: "Pass-thru", tech: "Lithium", thickness: "11mm" } },
+  { id: 21, name: "Powerbank High-Cap", price: 300, category: "accessories", badge: "WIRELESS", img: "assets/wireless powerbank.webp", rating: 4.6, stars: 4, reviewCount: 115, soldCount: 750, stock: 25, specs: { capacity: "10k mAh", wireless: "7.5W", ports: "2 Output", display: "LED Digital", weight: "220g" } },
 
-  // PLAYSTATIONS
-  { id: 14, name: "PlayStation 4 Slim", price: 0, category: "playstation", badge: "CONTACT FOR PRICE", img: "assets/ps 4 slim.webp" },
-  { id: 15, name: "PlayStation 4 Pro", price: 0, category: "playstation", badge: "CONTACT FOR PRICE", img: "assets/ps4 pro.webp" },
-  { id: 16, name: "PlayStation 5 Slim", price: 7000, category: "playstation", badge: "IN STOCK", img: "assets/ps5 slim.webp" },
-  { id: 17, name: "PlayStation 5 Standard", price: 6500, category: "playstation", badge: "IN STOCK", img: "assets/standard.webp" },
-  { id: 18, name: "PlayStation 5 Pro", price: 9000, category: "playstation", badge: "PREMIUM", img: "assets/ps5 pro.webp" },
-
-  // CONTROLLERS
-  { id: 19, name: "PS5 DualShock Controller", price: 1050, category: "accessories", badge: "IOS 26 VERIFIED", img: "assets/ps5 control.webp" },
-  { id: 20, name: "PS4 DualShock Controller", price: 160, category: "accessories", badge: "IOS 26 VERIFIED", img: "assets/ps4 controller.webp" },
+  // Original products from ID 14 onwards (retained)
+  { id: 14, name: "PlayStation 4 Slim", price: 0, category: "playstation", badge: "CONTACT FOR PRICE", img: "assets/ps 4 slim.webp", rating: 4.5, stars: 4, reviewCount: 12, soldCount: 5, stock: 0, specs: { storage: "500GB/1TB", resolution: "1080p", controllers: "1 Blue", power: "165W", color: "Black" } },
+  { id: 15, name: "PlayStation 4 Pro", price: 0, category: "playstation", badge: "CONTACT FOR PRICE", img: "assets/ps4 pro.webp", rating: 4.6, stars: 5, reviewCount: 8, soldCount: 3, stock: 0, specs: { storage: "1TB HDD", resolution: "4K native", hdr: "Supported", audio: "Optical Out", wifi: "5GHz" } },
+  { id: 16, name: "PlayStation 5 Slim", price: 7500, category: "gaming", badge: "NEW ARRIVAL", img: "assets/ps5 slim.webp", rating: 5.0, stars: 5, reviewCount: 24, soldCount: 12, stock: 4, specs: { storage: "1TB SSD", resolution: "4K 120Hz", type: "Disc/Digital", build: "Compact", tech: "Ray Tracing" } },
+  { id: 17, name: "PlayStation 5 Standard", price: 6500, category: "playstation", badge: "IN STOCK", img: "assets/standard.webp", rating: 4.9, stars: 5, reviewCount: 19, soldCount: 7, stock: 7, specs: { storage: "825GB SSD", resolution: "4K HDR", controllers: "1 Inc.", port: "HDMI 2.1", tech: "Tempest 3D" } },
+  { id: 18, name: "PlayStation 5 Pro", price: 9000, category: "playstation", badge: "PREMIUM", img: "assets/ps5 pro.webp", rating: 5.0, stars: 5, reviewCount: 4, soldCount: 2, stock: 3, specs: { storage: "2TB SSD", resolution: "8K 60Hz", pssr: "AI Scaling", gpu: "Enhanced", build: "Pro Tower" } },
+  { id: 19, name: "PS5 DualSense Controller", price: 850, category: "controllers", badge: "ORIGINAL", img: "assets/ps5 control.webp", rating: 4.8, stars: 5, reviewCount: 56, soldCount: 210, stock: 12, specs: { haptics: "Adaptive Triggers", feedback: "Haptic", battery: "1560mAh", tech: "Bluetooth 5.1", weight: "280g" } },
+  { id: 20, name: "PS4 DualShock 4", price: 450, category: "controllers", badge: "BEST SELLER", img: "assets/ps4 controller.webp", rating: 4.7, stars: 5, reviewCount: 92, soldCount: 450, stock: 15, specs: { touch: "2-Point Pad", light: "Integrated Bar", battery: "1000mAh", tech: "Bluetooth 2.1", weight: "210g" } },
 
   // VIDEOGRAPHY
-  { id: 21, name: "AI Face Tracking Quadrapod", price: 280, category: "accessories", badge: "PROMO", img: "assets/quadrapod.webp" }
+  { id: 23, name: "AI Face Tracking Quadrapod", price: 280, category: "videography", badge: "PROMO", img: "assets/quadrapod.webp", rating: 4.5, stars: 4, reviewCount: 31, soldCount: 85, stock: 20, specs: { rotation: "360 Loop", tracking: "AI Vision", mount: "Tripod Opt", battery: "15hrs", payload: "3kg" } }
 ];
 
 let cart = JSON.parse(localStorage.getItem('cb_cart')) || [];
 
-document.addEventListener('DOMContentLoaded', () => {
-  renderProducts('all');
-  initEventListeners();
-  updateCartUI();
+// Initialize content logic
+renderProducts('all');
+initEventListeners();
+updateCartUI();
+renderRecentlyViewed();
+
+// Drag & Drop Comparison Tray
+const tray = document.getElementById('comparison-tray');
+if (tray) {
+  tray.addEventListener('dragover', (e) => e.preventDefault());
+  tray.addEventListener('drop', (e) => {
+    e.preventDefault();
+    const id = parseInt(e.dataTransfer.getData('text/plain'));
+    if (!isNaN(id)) addToCompare(id);
+  });
+}
+const searchInput = document.getElementById('product-search');
+if (searchInput) {
+  searchInput.addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase();
+    renderProducts(activeCategory, query);
+  });
+}
 });
 
-function renderProducts(filter) {
+let activeCategory = 'all'; // Initialize activeCategory
+let pendingWhatsAppUrl = ''; // Store URL for celebration redirect
+
+// Helper for drag and drop
+window.handleDragStart = (e, productId) => {
+  e.dataTransfer.setData('text/plain', productId);
+  e.currentTarget.classList.add('dragging');
+};
+
+function renderProducts(category = 'all', query = '') {
+  activeCategory = category;
   const container = document.getElementById('product-container');
   if (!container) return;
 
+  let filtered = products;
+
+  // Apply category filter first
+  if (category !== 'all') {
+    filtered = filtered.filter(p => p.category === category);
+  }
+
+  // Apply search query filter
+  if (query) {
+    filtered = filtered.filter(p =>
+      p.name.toLowerCase().includes(query) ||
+      p.badge.toLowerCase().includes(query) ||
+      p.category.toLowerCase().includes(query)
+    );
+  }
+
   container.innerHTML = '';
-  const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
 
-  filtered.forEach(product => {
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div class="col-span-full py-20 text-center text-gray-500 animate-fade-in">
+        <i class="fas fa-search text-4xl mb-4 opacity-20"></i>
+        <p>No products found matching your search</p>
+      </div>`;
+    return;
+  }
+
+  filtered.forEach(p => {
     const card = document.createElement('div');
-    card.className = 'glass-card rounded-2xl overflow-hidden flex flex-col group animate-fade-in';
-    const priceDisplay = product.oldPrice
-      ? `<span class="price-old">GHS ${product.oldPrice.toLocaleString()}</span> <span class="price-new">GHS ${product.price.toLocaleString()}</span>`
-      : product.price > 0 ? `<span class="text-cyan font-bold text-sm">GHS ${product.price.toLocaleString()}</span>` : `<span class="text-cyan font-bold text-sm">Contact for Price</span>`;
+    card.className = "card-lift matte-card p-4 rounded-3xl relative animate-fade-in group product-xray-card";
+    card.draggable = true;
+    card.setAttribute('ondragstart', `window.handleDragStart(event, ${p.id})`);
 
-    const saleBadge = product.oldPrice ? `<span class="sale-badge">SALE</span>` : '';
+    const starsHtml = Array(5).fill(0).map((_, i) =>
+      `<i class="fas fa-star ${i < p.stars ? 'text-accent-cyan' : 'text-white/10'}"></i>`
+    ).join('');
 
     card.innerHTML = `
-            <div class="relative h-48 overflow-hidden bg-black/20">
-                <img src="${product.img}" alt="${product.name}" class="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110">
-                <span class="absolute top-2 left-2 bg-black/60 backdrop-blur-md text-[8px] font-bold px-2 py-1 rounded border border-glass-border text-cyan">${product.badge}</span>
-                ${saleBadge}
-                
-                <!-- Quick-View Overlay -->
-                <div class="quick-view-overlay">
-                    <div class="quick-view-btn">Quick View</div>
-                </div>
-            </div>
-            <div class="p-4 flex flex-col flex-1">
-                <h3 class="font-header text-sm font-medium mb-1 line-clamp-1">${product.name}</h3>
-                <div class="mb-4">${priceDisplay}</div>
-                <button onclick="addToCart(event, ${product.id})" class="mt-auto w-full py-2.5 rounded-lg border border-glass-border text-[10px] font-bold hover:bg-white hover:text-black transition-all uppercase">
-                    ADD TO CART
-                </button>
-            </div>`;
+      <div class="absolute top-4 left-4 z-10">
+        <span class="px-3 py-1 bg-black/60 backdrop-blur-md rounded-full text-[8px] font-bold border border-glass-border tracking-widest uppercase text-white/90">
+          ${p.badge}
+        </span>
+        ${p.oldPrice ? `
+          <span class="sale-badge ml-2">PROMO</span>
+        ` : ''}
+      </div>
+      <div class="absolute top-4 right-4 z-10 flex flex-col gap-2">
+        <button onclick="toggleWishlist(event, ${p.id})" class="w-8 h-8 rounded-full glass-card border-glass-border flex items-center justify-center hover:bg-white/10 transition-colors">
+          <i class="${wishlist.includes(p.id) ? 'fas text-accent-cyan' : 'far text-white/40'} fa-heart text-[10px]"></i>
+        </button>
+        <button onclick="addToCompare(${p.id})" class="w-8 h-8 rounded-full glass-card border-glass-border flex items-center justify-center hover:bg-white/10 transition-colors">
+          <i class="fas fa-shuffle text-white/40 text-[10px]"></i>
+        </button>
+      </div>
+      
+      <div class="aspect-square rounded-2xl bg-black/20 p-6 mb-4 flex items-center justify-center relative overflow-hidden group-hover:bg-black/30 transition-all">
+        <img src="${p.img}" alt="${p.name}" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500">
+        ${p.stock < 5 && p.stock > 0 ? `
+          <div class="absolute inset-x-0 bottom-0 bg-red-500/80 backdrop-blur-md py-1 text-[8px] font-bold text-center uppercase tracking-[0.2em] text-white">
+            Only ${p.stock} Left In Stock
+          </div>
+        ` : p.stock === 0 ? `
+          <div class="absolute inset-x-0 bottom-0 bg-gray-700/80 backdrop-blur-md py-1 text-[8px] font-bold text-center uppercase tracking-[0.2em] text-white">
+            Out of Stock
+          </div>
+        ` : ''}
+      </div>
+
+      <div class="mb-4">
+        <div class="flex items-center gap-1 mb-1">
+          ${starsHtml}
+          <span class="text-[9px] text-gray-500 ml-1">(${p.reviewCount})</span>
+        </div>
+        <h3 class="font-header text-sm font-bold truncate">${p.name}</h3>
+        <p class="text-[9px] text-gray-400 font-mono tracking-widest uppercase mt-1">
+          Verified Tech Drop
+        </p>
+      </div>
+
+      <div class="flex items-center justify-between mt-auto">
+        <div class="flex flex-col">
+          ${p.oldPrice ? `
+            <span class="price-old">GHS ${p.oldPrice.toLocaleString()}</span>
+            <span class="price-new">GHS ${p.price.toLocaleString()}</span>
+          ` : `
+            <span class="text-lg font-bold">GHS ${p.price.toLocaleString()}</span>
+          `}
+        </div>
+        <button onclick="addToCart(event, ${p.id})" class="h-10 px-4 rounded-xl bg-accent-cyan text-white flex items-center gap-2 shadow-[0_0_15px_rgba(37,99,255,0.4)] hover:scale-105 transition-all ${p.stock === 0 ? 'opacity-50 cursor-not-allowed' : ''}" ${p.stock === 0 ? 'disabled' : ''}>
+          <i class="fas fa-plus text-xs"></i>
+          <span class="text-[10px] font-bold uppercase tracking-widest">Add to Cart</span>
+        </button>
+      </div>
+      
+      <button onclick="openSpecsModal(${p.id})" class="w-full mt-4 py-2 rounded-xl border border-glass-border text-[9px] font-bold uppercase tracking-[0.3em] text-gray-400 hover:text-white hover:bg-white/5 transition-all">
+        The Specs
+      </button>
+    `;
     container.appendChild(card);
   });
 }
@@ -160,11 +254,348 @@ window.clearCart = () => {
   showToast("Cart cleared successfully", "success");
 };
 
-window.openCheckoutModal = (mode) => {
-  if (cart.length === 0) {
-    showToast("Your cart is empty!", "info");
-    return;
+window.openTrackingModal = () => {
+  document.getElementById('tracking-modal').classList.remove('hidden');
+  document.getElementById('tracking-result').classList.add('hidden');
+};
+
+window.closeTrackingModal = () => {
+  document.getElementById('tracking-modal').classList.add('hidden');
+};
+
+window.trackOrder = () => {
+  const orderId = document.getElementById('order-id-input').value.trim().toUpperCase();
+  if (!orderId) return showToast("Please enter an Order ID", "info");
+
+  const result = document.getElementById('tracking-result');
+  result.classList.remove('hidden');
+
+  // Simulating status
+  const statuses = [
+    { label: 'Processing', icon: 'fa-cog fa-spin', color: 'text-gray-400' },
+    { label: 'Packed', icon: 'fa-box', color: 'text-blue-400' },
+    { label: 'Out for Delivery', icon: 'fa-truck', color: 'text-cyan-400' },
+    { label: 'Delivered', icon: 'fa-check-circle', color: 'text-green-400' }
+  ];
+
+  // Deterministic pseudo-random status based on ID
+  const charSum = orderId.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const status = statuses[charSum % statuses.length];
+
+  result.innerHTML = `
+        <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center ${status.color}">
+                <i class="fas ${status.icon}"></i>
+            </div>
+            <div>
+                <p class="text-[10px] text-gray-400 uppercase tracking-widest">Order ${orderId}</p>
+                <h4 class="font-bold text-sm ${status.color}">${status.label}</h4>
+            </div>
+        </div>
+        <div class="mt-4 w-full bg-white/5 h-1 rounded-full overflow-hidden">
+            <div class="h-full bg-violet" style="width: ${(statuses.indexOf(status) + 1) * 25}%"></div>
+        </div>
+    `;
+};
+
+
+// FEATURE 4: Wishlist
+let wishlist = JSON.parse(localStorage.getItem('cb_wishlist')) || [];
+let recentlyViewed = JSON.parse(localStorage.getItem('cb_recent')) || [];
+
+const sampleReviews = [
+  { name: "Kojo B.", text: "Exceeded my expectations. The sound quality is insane.", stars: 5 },
+  { name: "Ama R.", text: "Legit products and very fast delivery to Kumasi.", stars: 5 },
+  { name: "David T.", text: "Hub service is top tier. 10/10 will buy again.", stars: 4 },
+  { name: "Sarah L.", text: "Obsidian design is fire. Product is 100% authentic.", stars: 5 },
+  { name: "Ibrahim M.", text: "Best tech shop in Accra. Competitive prices.", stars: 5 }
+];
+
+window.toggleWishlist = (e, id) => {
+  e.stopPropagation();
+  const index = wishlist.indexOf(id);
+  if (index === -1) {
+    wishlist.push(id);
+    showToast("Added to Wishlist", "info");
+  } else {
+    wishlist.splice(index, 1);
+    showToast("Removed from Wishlist", "info");
   }
+  localStorage.setItem('cb_wishlist', JSON.stringify(wishlist));
+  renderProducts(activeCategory); // Refresh to update hearts
+};
+
+// FEATURE 6: Technical Specs Modal
+window.openSpecsModal = (productId) => {
+  const product = products.find(p => p.id === productId);
+  if (!product) return;
+
+  // Track Recently Viewed
+  addToRecentlyViewed(productId);
+
+  document.getElementById('specs-title').innerText = product.name;
+  document.getElementById('specs-img').src = product.img;
+  document.getElementById('specs-img').style.opacity = '0.3';
+  document.getElementById('specs-price').innerText = `GHS ${product.price.toLocaleString()}`;
+
+  // Open modal immediately to show scan
+  document.getElementById('specs-modal').classList.remove('hidden');
+  document.getElementById('specs-modal').classList.add('flex');
+
+  const container = document.getElementById('specs-visual-container');
+  const scanStatus = document.getElementById('scan-status');
+  const list = document.getElementById('specs-list');
+
+  // Show Loading State
+  list.innerHTML = `
+    <div class="flex flex-col items-center justify-center h-full py-12 space-y-4">
+      <div class="w-8 h-8 border-2 border-accent-cyan/20 border-t-accent-cyan rounded-full animate-spin"></div>
+      <p class="font-mono text-[9px] uppercase tracking-[0.3em] text-gray-500">Decrypting Schematic...</p>
+    </div>
+  `;
+
+  // Trigger Scanning UI
+  container.classList.add('scanning-active');
+  scanStatus.classList.remove('hidden');
+
+  // Simulated Hardware ID flicker
+  const randomId = 'HW-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+  scanStatus.querySelector('.scan-text-flicker').innerText = `IDENTIFYING: ${randomId}`;
+
+  // Delayed Data Reveal
+  setTimeout(() => {
+    container.classList.remove('scanning-active');
+    scanStatus.classList.add('hidden');
+    document.getElementById('specs-img').style.opacity = '1';
+
+    list.innerHTML = Object.entries(product.specs).map(([key, value]) => `
+    <div class="flex justify-between items-center border-b border-white/5 py-2 group">
+      <span class="text-[10px] uppercase font-mono text-gray-500 group-hover:text-accent-cyan transition-colors">${key}</span>
+      <span class="text-xs font-bold text-white/90">${value}</span>
+    </div>
+  `).join('');
+
+    // Render Reviews Sample
+    const reviewsContainer = document.getElementById('product-reviews-sample');
+    if (reviewsContainer) {
+      const shuffled = [...sampleReviews].sort(() => 0.5 - Math.random());
+      const selected = shuffled.slice(0, 2);
+
+      reviewsContainer.innerHTML = selected.map(rev => `
+      <div class="bg-white/5 border border-glass-border p-3 rounded-xl">
+        <div class="flex items-center gap-1 mb-1">
+          ${Array(5).fill(0).map((_, i) => `<i class="fas fa-star text-[7px] ${i < rev.stars ? 'text-accent-cyan' : 'text-white/10'}"></i>`).join('')}
+        </div>
+        <p class="text-[10px] text-gray-400 italic mb-1 truncate">"${rev.text}"</p>
+        <p class="text-[8px] font-bold text-accent-cyan uppercase tracking-widest">— ${rev.name}</p>
+      </div>
+    `).join('');
+    }
+  }, 1500);
+};
+
+window.closeSpecsModal = () => {
+  document.getElementById('specs-modal').classList.add('hidden');
+  document.getElementById('specs-modal').classList.remove('flex');
+};
+
+// FEATURE 7: AirPods Comparison Tool
+let compareList = [];
+
+window.addToCompare = (productId) => {
+  if (compareList.includes(productId)) return showToast("Already in comparison", "info");
+  if (compareList.length >= 2) return showToast("Comparison limited to 2 items", "info");
+
+  const product = products.find(p => p.id === productId);
+  compareList.push(productId);
+  updateComparisonUI();
+  showToast(`Added ${product.name} to Compare`, "success");
+};
+
+window.removeFromCompare = (productId) => {
+  compareList = compareList.filter(id => id !== productId);
+  updateComparisonUI();
+};
+
+window.clearComparison = () => {
+  compareList = [];
+  updateComparisonUI();
+};
+
+function updateComparisonUI() {
+  const tray = document.getElementById('comparison-tray');
+  if (compareList.length > 0) {
+    tray.classList.add('flex');
+    tray.classList.remove('hidden');
+  } else {
+    tray.classList.add('hidden');
+    tray.classList.remove('flex');
+  }
+
+  // Update Slots
+  for (let i = 0; i < 2; i++) {
+    const slot = document.getElementById(`slot-${i}`);
+    if (compareList[i]) {
+      const product = products.find(p => p.id === compareList[i]);
+      slot.innerHTML = `<img src="${product.img}" class="tray-slot-img" onclick="removeFromCompare(${product.id})">`;
+      slot.classList.remove('border-dashed');
+      slot.classList.add('border-solid');
+    } else {
+      slot.innerHTML = '';
+      slot.classList.add('border-dashed');
+      slot.classList.remove('border-solid');
+    }
+  }
+
+  document.getElementById('compare-trigger').disabled = compareList.length < 2;
+}
+
+window.openComparison = () => {
+  if (compareList.length < 2) return;
+  const p1 = products.find(p => p.id === compareList[0]);
+  const p2 = products.find(p => p.id === compareList[1]);
+
+  const table = document.getElementById('comparison-table');
+
+  // Get all unique spec keys
+  const allKeys = [...new Set([...Object.keys(p1.specs || {}), ...Object.keys(p2.specs || {})])];
+
+  table.innerHTML = `
+        <thead>
+            <tr class="compare-table-head">
+                <th class="py-4 text-gray-500 font-mono text-[10px] uppercase">Technical Spec</th>
+                <th class="py-4 text-center">
+                    <img src="${p1.img}" class="w-16 h-16 mx-auto mb-2 object-contain">
+                    <div class="text-xs font-bold uppercase">${p1.name}</div>
+                </th>
+                <th class="py-4 text-center">
+                    <img src="${p2.img}" class="w-16 h-16 mx-auto mb-2 object-contain">
+                    <div class="text-xs font-bold uppercase">${p2.name}</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            ${allKeys.map(key => `
+                <tr class="compare-row">
+                    <td class="py-4 text-gray-400 font-mono text-[9px] uppercase tracking-wider">${key.replace(/([A-Z])/g, ' $1')}</td>
+                    <td class="py-4 text-center text-sm font-bold text-white uppercase">${p1.specs?.[key] || '—'}</td>
+                    <td class="py-4 text-center text-sm font-bold text-white uppercase">${p2.specs?.[key] || '—'}</td>
+                </tr>
+            `).join('')}
+        </tbody>
+    `;
+
+  document.getElementById('comparison-modal').classList.add('flex');
+  document.getElementById('comparison-modal').classList.remove('hidden');
+};
+
+window.closeComparison = () => {
+  document.getElementById('comparison-modal').classList.add('hidden');
+  document.getElementById('comparison-modal').classList.remove('flex');
+};
+
+
+// FEATURE 8: Order Success Celebration
+window.triggerCelebration = () => {
+  const receiptItems = document.getElementById('receipt-items');
+  const receiptTotal = document.getElementById('receipt-total');
+  const authId = document.getElementById('receipt-auth-id');
+
+  // Generate Auth ID
+  const randomId = 'CBH-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+  authId.innerText = randomId;
+
+  // Populate Receipt
+  receiptItems.innerHTML = cart.map(item => `
+        <div class="receipt-item-row">
+            <span class="text-white font-medium">${item.name} <span class="text-gray-500 text-[10px]">x${item.quantity}</span></span>
+            <span class="text-white font-mono">GHS ${(item.price * item.quantity).toLocaleString()}</span>
+        </div>
+    `).join('');
+
+  const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const hasAirPods = cart.some(i => i.category === 'airpods');
+  const hasCharger = cart.some(i => i.category === 'chargers');
+  const discount = (hasAirPods && hasCharger) ? 50 : 0;
+  const finalTotal = Math.max(0, total - discount);
+
+  receiptTotal.innerText = `GHS ${finalTotal.toLocaleString()}.00`;
+
+  // Show Modal
+  document.getElementById('success-modal').classList.add('flex');
+  document.getElementById('success-modal').classList.remove('hidden');
+
+  // Run Confetti
+  startConfetti();
+
+  // Clear Cart early so it's fresh after celebration
+  const finalCart = [...cart];
+  cart = [];
+  localStorage.removeItem('cb_cart');
+  updateCartUI();
+};
+
+function startConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let particles = [];
+  const colors = ['#2563ff', '#4f46e5', '#ffffff', '#10b981'];
+
+  for (let i = 0; i < 150; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      size: Math.random() * 8 + 2,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      speed: Math.random() * 5 + 2,
+      angle: Math.random() * 6.28
+    });
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.y += p.speed;
+      p.x += Math.sin(p.angle) * 2;
+      ctx.fillStyle = p.color;
+      ctx.fillRect(p.x, p.y, p.size, p.size);
+      if (p.y > canvas.height) p.y = -10;
+    });
+    if (document.getElementById('success-modal').classList.contains('flex')) {
+      requestAnimationFrame(animate);
+    }
+  }
+  animate();
+}
+
+window.continueToWhatsApp = () => {
+  if (pendingWhatsAppUrl) {
+    window.open(pendingWhatsAppUrl, '_blank');
+    closeSuccessModal();
+  }
+};
+
+window.closeSuccessModal = () => {
+  document.getElementById('success-modal').classList.add('hidden');
+  document.getElementById('success-modal').classList.remove('flex');
+};
+
+// Feature 5 (Removed)
+
+window.handleNewsletter = (e) => {
+  e.preventDefault();
+  const email = document.getElementById('newsletter-email').value;
+  if (email) {
+    showToast("Welcome to the Hub! Check your inbox soon.", "success");
+    e.target.reset();
+  }
+};
+
+window.openCheckoutModal = (mode) => {
+  if (cart.length === 0) return; // Prevent opening if empty
   document.getElementById('checkout-mode').value = mode;
   document.getElementById('checkout-modal').classList.remove('hidden');
 };
@@ -184,12 +615,16 @@ window.processCheckout = () => {
   if (!location) return showToast("Please enter your delivery location.", "error");
 
   const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const hasAirPods = cart.some(i => i.category === 'airpods');
+  const hasCharger = cart.some(i => i.category === 'chargers');
+  const discount = (hasAirPods && hasCharger) ? 50 : 0;
+  const finalTotalAmount = Math.max(0, totalAmount - discount);
 
   if (mode === 'paystack') {
     const handler = PaystackPop.setup({
       key: 'pk_live_2efe7da796c478510aa668864c0c4bbfc9cc1d1e',
       email: email,
-      amount: totalAmount * 100,
+      amount: finalTotalAmount * 100,
       currency: 'GHS',
       ref: 'CBH_' + Math.floor((Math.random() * 1000000000) + 1),
       metadata: {
@@ -207,35 +642,26 @@ window.processCheckout = () => {
       }
     });
     handler.openIframe();
+    closeCheckoutModal();
   } else {
     // WhatsApp Mode
-    showToast("Preparing WhatsApp order...", "info");
-    let message = `🚀 *New Order from Centuryboy's Hub*\n\n`;
-    message += `👤 *Customer:* ${name}\n`;
-    message += `📧 *Email:* ${email}\n`;
-    message += `📍 *Location:* ${location}\n\n`;
-    message += `🛍️ *Order Items:*\n`;
+    const message = `*NEW ORDER - CENTURYBOY'S HUB*%0A%0A` +
+      `*Customer:* ${name}%0A` +
+      `*Location:* ${location}%0A%0A` +
+      `*Items:*%0A${cart.map(i => `- ${i.name} (x${i.quantity})`).join('%0A')}%0A%0A` +
+      (discount > 0 ? `*Combo Discount:* -GHS ${discount}%0A` : '') +
+      `*Total: GHS ${finalTotalAmount.toLocaleString()}*%0A%0A` +
+      `Please confirm my order.`;
 
-    cart.forEach(item => {
-      message += `• ${item.name} (x${item.quantity}) - GHS ${(item.price * item.quantity).toLocaleString()}\n`;
-    });
-
-    message += `\n💰 *Total Amount: GHS ${totalAmount.toLocaleString()}*\n\n`;
-    message += "_Please confirm my order!_";
-
-    const encodedMsg = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/233540639091?text=${encodedMsg}`;
-    window.open(whatsappUrl, '_blank');
-    finalizeOrder();
+    pendingWhatsAppUrl = `https://wa.me/233540639091?text=${message}`;
+    triggerCelebration();
+    closeCheckoutModal();
   }
 };
 
-function finalizeOrder() {
-  cart = [];
-  localStorage.setItem('cb_cart', JSON.stringify(cart));
-  updateCartUI();
-  closeCheckoutModal();
-}
+window.finalizeOrder = () => {
+  triggerCelebration();
+};
 
 window.addToCart = (e, id) => {
   const product = products.find(p => p.id === id);
@@ -256,15 +682,18 @@ window.addToCart = (e, id) => {
   localStorage.setItem('cb_cart', JSON.stringify(cart));
   updateCartUI();
 
+  // Feature: Auto-open cart
+  if (window.toggleCart) window.toggleCart(true);
+
   // Visual feedback
   const btn = e.currentTarget || e.target;
   if (btn && btn.tagName === 'BUTTON') {
-    const originalText = btn.innerText;
-    btn.innerText = "ADDED!";
+    const originalText = btn.innerHTML; // Changed from innerText to innerHTML to preserve icon
+    btn.innerHTML = "<i class='fas fa-check'></i>"; // Changed to icon
     btn.classList.add('bg-cyan', 'text-black');
     btn.disabled = true;
     setTimeout(() => {
-      btn.innerText = originalText;
+      btn.innerHTML = originalText;
       btn.classList.remove('bg-cyan', 'text-black');
       btn.disabled = false;
     }, 800);
@@ -276,20 +705,53 @@ function updateCartUI() {
   const cartCount = document.getElementById('cart-count');
   const cartTotal = document.getElementById('cart-total');
   const emptyMsg = document.getElementById('empty-cart-msg');
+  const homeEmptyMsg = document.getElementById('home-empty-cart');
+  const paystackBtn = document.getElementById('paystack-btn');
+  const checkoutBtn = document.getElementById('checkout-btn');
 
   if (!cartItems || !cartCount || !cartTotal) return;
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   cartCount.innerText = totalItems;
 
+  const trigger = document.getElementById('cart-trigger');
+  if (totalItems > 0) {
+    trigger.classList.add('cart-glow');
+    trigger.classList.add('border-accent-cyan');
+  } else {
+    trigger.classList.remove('cart-glow');
+    trigger.classList.remove('border-accent-cyan');
+  }
+
   if (cart.length === 0) {
-    if (emptyMsg) emptyMsg.classList.remove('hidden');
+    if (emptyMsg) {
+      emptyMsg.classList.remove('hidden');
+      emptyMsg.classList.add('flex');
+    }
+    if (homeEmptyMsg) {
+      homeEmptyMsg.classList.remove('hidden');
+      homeEmptyMsg.classList.add('flex');
+    }
     cartItems.innerHTML = '';
     cartTotal.innerText = "GHS 0.00";
+
+    if (paystackBtn) paystackBtn.classList.add('btn-disabled');
+    if (checkoutBtn) checkoutBtn.classList.add('btn-disabled');
     return;
   }
 
-  if (emptyMsg) emptyMsg.classList.add('hidden');
+  if (emptyMsg) {
+    emptyMsg.classList.add('hidden');
+    emptyMsg.classList.remove('flex');
+  }
+  if (homeEmptyMsg) {
+    homeEmptyMsg.classList.add('hidden');
+    homeEmptyMsg.classList.remove('flex');
+  }
+
+  if (paystackBtn) paystackBtn.classList.remove('btn-disabled');
+  if (checkoutBtn) checkoutBtn.classList.remove('btn-disabled');
+
   cartItems.innerHTML = '';
   let total = 0;
 
@@ -313,7 +775,18 @@ function updateCartUI() {
     cartItems.appendChild(itemEl);
   });
 
-  cartTotal.innerText = `GHS ${total.toLocaleString()}.00`;
+  let discount = 0;
+  const hasAirPods = cart.some(i => i.category === 'airpods');
+  const hasCharger = cart.some(i => i.category === 'chargers');
+  if (hasAirPods && hasCharger) discount = 50;
+
+  const finalTotal = Math.max(0, total - discount);
+  cartTotal.innerHTML = `
+    <div class="flex flex-col items-end">
+      ${discount > 0 ? `<span class="text-[10px] text-green-400 font-bold uppercase tracking-widest mb-1 animate-pulse">Combo Discount Applied: -GHS ${discount}</span>` : ''}
+      <span class="text-lg">GHS ${finalTotal.toLocaleString()}.00</span>
+    </div>
+  `;
 }
 
 window.changeQty = (id, delta) => {
@@ -330,4 +803,43 @@ window.changeQty = (id, delta) => {
 function handleCheckout() {
   // This function is now deprecated in favor of openCheckoutModal('whatsapp')
   openCheckoutModal('whatsapp');
+}
+
+function addToRecentlyViewed(id) {
+  recentlyViewed = recentlyViewed.filter(recentId => recentId !== id);
+  recentlyViewed.unshift(id);
+  recentlyViewed = recentlyViewed.slice(0, 5); // Keep last 5
+  localStorage.setItem('cb_recent', JSON.stringify(recentlyViewed));
+  renderRecentlyViewed();
+}
+
+function renderRecentlyViewed() {
+  const container = document.getElementById('recently-viewed-container');
+  const section = document.getElementById('recently-viewed-section');
+
+  if (!container || !recentlyViewed.length) {
+    if (section) section.classList.add('hidden');
+    return;
+  }
+
+  section.classList.remove('hidden');
+  container.innerHTML = '';
+
+  recentlyViewed.forEach(id => {
+    const p = products.find(prod => prod.id === id);
+    if (!p) return;
+
+    const card = document.createElement('div');
+    card.className = "bg-white/5 border border-glass-border p-3 rounded-2xl hover:border-accent-cyan/30 transition-all cursor-pointer group animate-fade-in";
+    card.onclick = () => openSpecsModal(p.id);
+
+    card.innerHTML = `
+      <div class="aspect-square bg-black/20 rounded-xl mb-3 flex items-center justify-center p-2">
+        <img src="${p.img}" class="w-full h-full object-contain group-hover:scale-110 transition-transform">
+      </div>
+      <h5 class="text-[9px] font-bold truncate mb-1 uppercase tracking-tighter">${p.name}</h5>
+      <p class="text-[10px] text-accent-cyan font-bold">GHS ${p.price.toLocaleString()}</p>
+    `;
+    container.appendChild(card);
+  });
 }
