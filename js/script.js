@@ -64,6 +64,11 @@ function renderProducts(filter) {
                 <img src="${product.img}" alt="${product.name}" class="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110">
                 <span class="absolute top-2 left-2 bg-black/60 backdrop-blur-md text-[8px] font-bold px-2 py-1 rounded border border-glass-border text-cyan">${product.badge}</span>
                 ${saleBadge}
+                
+                <!-- Quick-View Overlay -->
+                <div class="quick-view-overlay">
+                    <div class="quick-view-btn">Quick View</div>
+                </div>
             </div>
             <div class="p-4 flex flex-col flex-1">
                 <h3 class="font-header text-sm font-medium mb-1 line-clamp-1">${product.name}</h3>
@@ -124,15 +129,42 @@ function initEventListeners() {
   window.toggleCart = toggleCart;
 }
 
+// Toast Notification System
+window.showToast = (message, type = 'info') => {
+  const container = document.getElementById('toast-container');
+  if (!container) return;
+
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+
+  const icon = type === 'success' ? 'fa-check-circle' : 'fa-info-circle';
+  toast.innerHTML = `<i class="fas ${icon}"></i><span>${message}</span>`;
+
+  container.appendChild(toast);
+
+  // Auto remove after 3 seconds
+  setTimeout(() => {
+    toast.classList.add('removing');
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+};
+
 window.clearCart = () => {
-  if (cart.length === 0) return;
+  if (cart.length === 0) {
+    showToast("Cart is already empty", "info");
+    return;
+  }
   cart = [];
   localStorage.setItem('cb_cart', JSON.stringify(cart));
   updateCartUI();
+  showToast("Cart cleared successfully", "success");
 };
 
 window.openCheckoutModal = (mode) => {
-  if (cart.length === 0) return alert("Your cart is empty!");
+  if (cart.length === 0) {
+    showToast("Your cart is empty!", "info");
+    return;
+  }
   document.getElementById('checkout-mode').value = mode;
   document.getElementById('checkout-modal').classList.remove('hidden');
 };
@@ -147,9 +179,9 @@ window.processCheckout = () => {
   const email = document.getElementById('checkout-email').value.trim();
   const location = document.getElementById('checkout-location').value.trim();
 
-  if (!name) return alert("Please enter your full name.");
-  if (!email || !email.includes('@')) return alert("Please enter a valid email address.");
-  if (!location) return alert("Please enter your delivery location.");
+  if (!name) return showToast("Please enter your full name.", "error");
+  if (!email || !email.includes('@')) return showToast("Please enter a valid email address.", "error");
+  if (!location) return showToast("Please enter your delivery location.", "error");
 
   const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
@@ -167,16 +199,17 @@ window.processCheckout = () => {
         ]
       },
       callback: function (response) {
-        alert('Payment successful! Reference: ' + response.reference);
+        showToast('Payment successful!', 'success');
         finalizeOrder();
       },
       onClose: function () {
-        alert('Transaction cancelled.');
+        showToast('Transaction cancelled', 'info');
       }
     });
     handler.openIframe();
   } else {
     // WhatsApp Mode
+    showToast("Preparing WhatsApp order...", "info");
     let message = `🚀 *New Order from Centuryboy's Hub*\n\n`;
     message += `👤 *Customer:* ${name}\n`;
     message += `📧 *Email:* ${email}\n`;
