@@ -65,12 +65,6 @@
           </div>
         </a>
 
-        <!-- Search Bar -->
-        <div class="relative flex-1 max-w-[120px] sm:max-w-xs transition-all">
-          <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-[10px]"></i>
-          <input type="text" id="product-search" placeholder="Search..."
-            class="w-full bg-white/5 border border-glass-border rounded-full py-1.5 pl-8 pr-3 text-[10px] text-white focus:outline-none focus:border-cyan transition-all">
-        </div>
 
         <a href="#product-container" class="hover:text-cyan transition-colors">Products</a>
         <a href="#contact" class="hover:text-cyan transition-colors">Contact</a>
@@ -175,27 +169,45 @@
         </div>
       </div>
     </section>
-
-
-    <nav class="mb-8">
-      <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-4 border-b border-glass-border pb-4"
-        id="category-tabs">
-        <button class="tab-btn tab-active px-4 py-2 font-header text-sm transition-all" data-category="all">All
-          Products</button>
-        <button class="tab-btn px-4 py-2 font-header text-sm text-gray-500 transition-all"
-          data-category="airpods">AirPods</button>
-        <button class="tab-btn px-4 py-2 font-header text-sm text-gray-500 transition-all"
-          data-category="playstation">Playstation</button>
-        <button class="tab-btn px-4 py-2 font-header text-sm text-gray-500 transition-all"
-          data-category="chargers">Chargers</button>
-        <button class="tab-btn px-4 py-2 font-header text-sm text-gray-500 transition-all"
-          data-category="accessories">Accessories</button>
-        <button class="tab-btn px-4 py-2 font-header text-sm text-gray-500 transition-all"
-          data-category="controllers">Controllers</button>
-        <button class="tab-btn px-4 py-2 font-header text-sm text-gray-500 transition-all"
-          data-category="videography">Videography</button>
+    <!-- Dynamic Product Section -->
+    <section class="mb-12">
+      <!-- Premium Hero Search -->
+      <div class="max-w-2xl mx-auto mb-10 relative group">
+        <div
+          class="absolute -inset-1 bg-gradient-to-r from-cyan/20 to-violet/20 rounded-2xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200">
+        </div>
+        <div class="relative bg-bg-deep border border-glass-border rounded-2xl flex items-center px-6 py-4 shadow-2xl">
+          <i class="fas fa-search text-gray-500 mr-4"></i>
+          <input type="text" id="product-search" placeholder="Search premium tech drops..."
+            class="w-full bg-transparent text-white font-body text-sm focus:outline-none placeholder:text-gray-600">
+          <div class="flex items-center gap-2 ml-4 border-l border-glass-border pl-4">
+            <span class="text-[9px] font-bold text-cyan/40 uppercase tracking-widest hidden sm:block">Filter
+              Ready</span>
+            <div class="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></div>
+          </div>
+        </div>
       </div>
-    </nav>
+
+      <nav class="mb-8">
+        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-4 border-b border-glass-border pb-4"
+          id="category-tabs">
+          <button class="tab-btn tab-active px-4 py-2 font-header text-sm transition-all" data-category="all">All
+            Products</button>
+          <button class="tab-btn px-4 py-2 font-header text-sm text-gray-500 transition-all"
+            data-category="airpods">AirPods</button>
+          <button class="tab-btn px-4 py-2 font-header text-sm text-gray-500 transition-all"
+            data-category="playstation">Playstation</button>
+          <button class="tab-btn px-4 py-2 font-header text-sm text-gray-500 transition-all"
+            data-category="chargers">Chargers</button>
+          <button class="tab-btn px-4 py-2 font-header text-sm text-gray-500 transition-all"
+            data-category="accessories">Accessories</button>
+          <button class="tab-btn px-4 py-2 font-header text-sm text-gray-500 transition-all"
+            data-category="controllers">Controllers</button>
+          <button class="tab-btn px-4 py-2 font-header text-sm text-gray-500 transition-all"
+            data-category="videography">Videography</button>
+        </div>
+      </nav>
+    </section>
 
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="product-container">
       <!-- Products injected by JS -->
