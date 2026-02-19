@@ -112,15 +112,6 @@ function renderProducts(category = 'all', query = '') {
       
       <div class="aspect-square rounded-2xl bg-black/20 p-6 mb-4 flex items-center justify-center relative overflow-hidden group-hover:bg-black/30 transition-all">
         <img src="${p.img}" alt="${p.name}" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500">
-        ${p.stock < 5 && p.stock > 0 ? `
-          <div class="absolute inset-x-0 bottom-0 bg-red-500/80 backdrop-blur-md py-1 text-[8px] font-bold text-center uppercase tracking-[0.2em] text-white">
-            Only ${p.stock} Left In Stock
-          </div>
-        ` : p.stock === 0 ? `
-          <div class="absolute inset-x-0 bottom-0 bg-gray-700/80 backdrop-blur-md py-1 text-[8px] font-bold text-center uppercase tracking-[0.2em] text-white">
-            Out of Stock
-          </div>
-        ` : ''}
       </div>
 
       <div class="mb-4">
