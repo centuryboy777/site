@@ -34,29 +34,29 @@ const products = [
 
 let cart = JSON.parse(localStorage.getItem('cb_cart')) || [];
 
-// Initialize content logic
-renderProducts('all');
-initEventListeners();
-updateCartUI();
-renderRecentlyViewed();
+document.addEventListener('DOMContentLoaded', () => {
+  renderProducts('all');
+  initEventListeners();
+  updateCartUI();
+  renderRecentlyViewed();
 
-// Drag & Drop Comparison Tray
-const tray = document.getElementById('comparison-tray');
-if (tray) {
-  tray.addEventListener('dragover', (e) => e.preventDefault());
-  tray.addEventListener('drop', (e) => {
-    e.preventDefault();
-    const id = parseInt(e.dataTransfer.getData('text/plain'));
-    if (!isNaN(id)) addToCompare(id);
-  });
-}
-const searchInput = document.getElementById('product-search');
-if (searchInput) {
-  searchInput.addEventListener('input', (e) => {
-    const query = e.target.value.toLowerCase();
-    renderProducts(activeCategory, query);
-  });
-}
+  // Drag & Drop Comparison Tray
+  const tray = document.getElementById('comparison-tray');
+  if (tray) {
+    tray.addEventListener('dragover', (e) => e.preventDefault());
+    tray.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const id = parseInt(e.dataTransfer.getData('text/plain'));
+      if (!isNaN(id)) addToCompare(id);
+    });
+  }
+  const searchInput = document.getElementById('product-search');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      renderProducts(activeCategory, query);
+    });
+  }
 });
 
 let activeCategory = 'all'; // Initialize activeCategory
