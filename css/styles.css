@@ -396,6 +396,16 @@ body {
   }
 }
 
+/* Floating Cart Enhancement */
+.cart-glow {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+  background: rgba(0, 240, 255, 0.1);
+}
+
+#cart-trigger i {
+  filter: drop-shadow(0 0 5px rgba(0, 240, 255, 0.5));
+}
+
 /* Hero Search Enhancement */
 .search-glow {
   box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);

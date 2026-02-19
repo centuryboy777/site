@@ -44,9 +44,9 @@
   <!-- <div class="nebula-bg"></div> -->
   <!-- <div class="grid-overlay"></div> -->
 
-  <header class="fixed top-0 left-0 w-full z-50 glass-card border-b border-glass-border">
-    <div class="container mx-auto px-4 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-4 lg:gap-8 overflow-x-auto no-scrollbar py-2 flex-1">
+  <header class="fixed top-0 left-0 w-full z-50 bg-bg-surface/80 backdrop-blur-xl border-b border-glass-border">
+    <div class="container mx-auto px-4 h-20 flex items-center justify-between">
+      <nav class="flex items-center gap-4 lg:gap-8 overflow-x-auto no-scrollbar py-2 flex-1">
         <!-- Logo -->
         <a href="#" class="font-header text-xl font-bold flex items-center gap-2 group shrink-0">
           <div class="w-8 h-8 rounded-lg bg-accent-cyan p-[1px]">
@@ -68,18 +68,10 @@
 
         <a href="#product-container" class="hover:text-cyan transition-colors">Products</a>
         <a href="#contact" class="hover:text-cyan transition-colors">Contact</a>
-        </nav>
-        <button onclick="openTrackingModal()"
-          class="hover:text-cyan transition-colors uppercase tracking-widest text-[10px] sm:text-xs font-bold border-b border-transparent hover:border-cyan shrink-0">Track
-          Order</button>
-      </div>
-      <button id="cart-trigger"
-        class="relative p-2 glass-card rounded-full w-12 h-12 flex items-center justify-center hover:border-cyan transition-all group"
-        aria-label="Open cart">
-        <i class="fas fa-shopping-bag text-cyan text-xl"></i>
-        <span id="cart-count"
-          class="absolute -top-1 -right-1 bg-violet text-[10px] font-bold w-6 h-6 rounded-full flex items-center justify-center border border-white/20 shadow-[0_0_10px_rgba(79,70,229,0.5)]">0</span>
-      </button>
+      </nav>
+      <button onclick="openTrackingModal()"
+        class="hover:text-cyan transition-colors uppercase tracking-widest text-[10px] sm:text-xs font-bold border-b border-transparent hover:border-cyan shrink-0">Track
+        Order</button>
     </div>
   </header>
 
@@ -140,35 +132,6 @@
       </div>
     </section>
 
-    <!-- Why Buy From Us Section -->
-    <section
-      class="mb-12 py-10 border-y border-glass-border bg-gradient-to-r from-transparent via-white/5 to-transparent">
-      <div class="flex flex-col md:flex-row items-center gap-8 justify-center">
-        <div class="text-center md:text-left transition-all hover:scale-105 duration-300">
-          <h3 class="font-header text-2xl font-bold uppercase tracking-tighter">Why Choose <span
-              class="text-accent-cyan">The Hub?</span></h3>
-          <p class="text-gray-500 text-xs mt-1 uppercase tracking-widest">Premium quality, zero compromises.</p>
-        </div>
-        <div class="flex flex-wrap justify-center gap-6">
-          <div class="flex items-center gap-2 group">
-            <i class="fas fa-check-circle text-accent-cyan text-sm group-hover:scale-125 transition-transform"></i>
-            <span class="text-[10px] uppercase font-bold tracking-widest">Affordable Items</span>
-          </div>
-          <div class="flex items-center gap-2 group">
-            <i class="fas fa-check-circle text-accent-cyan text-sm group-hover:scale-125 transition-transform"></i>
-            <span class="text-[10px] uppercase font-bold tracking-widest">Verified Specs</span>
-          </div>
-          <div class="flex items-center gap-2 group">
-            <i class="fas fa-check-circle text-accent-cyan text-sm group-hover:scale-125 transition-transform"></i>
-            <span class="text-[10px] uppercase font-bold tracking-widest">24/7 Support</span>
-          </div>
-          <div class="flex items-center gap-2 group">
-            <i class="fas fa-check-circle text-accent-cyan text-sm group-hover:scale-125 transition-transform"></i>
-            <span class="text-[10px] uppercase font-bold tracking-widest">Easy Returns</span>
-          </div>
-        </div>
-      </div>
-    </section>
     <!-- Dynamic Product Section -->
     <section class="mb-12">
       <!-- Premium Hero Search -->
@@ -700,33 +663,62 @@
             class="text-gray-500 font-normal">Within Metropolitan Areas</span></p>
       </div>
     </div>
-  </section>
+    <!-- Why Buy From Us Section (Relocated) -->
+    <section
+      class="mb-20 py-16 border-y border-glass-border bg-gradient-to-r from-transparent via-white/5 to-transparent">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center gap-12 justify-center">
+          <div class="text-center md:text-left transition-all hover:scale-105 duration-300 max-w-xs">
+            <h3 class="font-header text-3xl font-bold uppercase tracking-tighter mb-2">Why Choose <span
+                class="text-accent-cyan">The Hub?</span></h3>
+            <p class="text-gray-500 text-xs uppercase tracking-widest">Premium quality, zero compromises.</p>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-8">
+            <div class="flex flex-col items-center gap-3 group">
+              <i class="fas fa-check-circle text-accent-cyan text-xl group-hover:scale-125 transition-transform"></i>
+              <span class="text-[10px] uppercase font-bold tracking-widest text-center">Affordable Items</span>
+            </div>
+            <div class="flex flex-col items-center gap-3 group">
+              <i class="fas fa-check-circle text-accent-cyan text-xl group-hover:scale-125 transition-transform"></i>
+              <span class="text-[10px] uppercase font-bold tracking-widest text-center">Verified Specs</span>
+            </div>
+            <div class="flex flex-col items-center gap-3 group">
+              <i class="fas fa-check-circle text-accent-cyan text-xl group-hover:scale-125 transition-transform"></i>
+              <span class="text-[10px] uppercase font-bold tracking-widest text-center">24/7 Support</span>
+            </div>
+            <div class="flex flex-col items-center gap-3 group">
+              <i class="fas fa-check-circle text-accent-cyan text-xl group-hover:scale-125 transition-transform"></i>
+              <span class="text-[10px] uppercase font-bold tracking-widest text-center">Easy Returns</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <footer class="py-10 text-center text-gray-500 text-xs border-t border-glass-border">
-    <div class="flex items-center justify-center gap-6 mb-4">
-      <button onclick="openTrackingModal()"
-        class="hover:text-accent-cyan transition-colors uppercase tracking-[0.2em] text-[9px] font-bold">Track Your
-        Order</button>
-      <a href="#faq"
-        class="hover:text-accent-cyan transition-colors uppercase tracking-[0.2em] text-[9px] font-bold">Support</a>
-    </div>
-    <p>&copy; 2026 Centuryboy's Hub. All rights reserved.</p>
-  </footer>
+    <footer class="py-10 text-center text-gray-500 text-xs border-t border-glass-border">
+      <div class="flex items-center justify-center gap-6 mb-4">
+        <button onclick="openTrackingModal()"
+          class="hover:text-accent-cyan transition-colors uppercase tracking-[0.2em] text-[9px] font-bold">Track Your
+          Order</button>
+        <a href="#faq"
+          class="hover:text-accent-cyan transition-colors uppercase tracking-[0.2em] text-[9px] font-bold">Support</a>
+      </div>
+      <p>&copy; 2026 Centuryboy's Hub. All rights reserved.</p>
+    </footer>
 
-  <!-- Toast Notifications Container -->
-  <div id="toast-container"></div>
+    <!-- Toast Notifications Container -->
+    <div id="toast-container"></div>
 
-  <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/233540639091" target="_blank" rel="noopener"
-    class="fixed bottom-6 right-6 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white text-2xl shadow-[0_8px_30px_rgba(37,211,102,0.4)] z-[100] hover:scale-110 transition-transform animate-bounce-subtle">
-    <i class="fab fa-whatsapp"></i>
-    <span class="absolute -top-1 -right-1 flex h-3 w-3">
-      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-      <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
-    </span>
-  </a>
+    <!-- Floating Premium Cart Trigger -->
+    <button id="cart-trigger"
+      class="fixed bottom-6 right-6 w-16 h-16 bg-bg-surface/80 backdrop-blur-xl border border-glass-border rounded-full flex items-center justify-center text-accent-cyan text-2xl shadow-[0_8px_32px_rgba(0,240,255,0.2)] z-[100] hover:scale-110 hover:border-accent-cyan transition-all group active:scale-95"
+      aria-label="Open cart">
+      <i class="fas fa-shopping-bag group-hover:animate-bounce-subtle"></i>
+      <span id="cart-count"
+        class="absolute -top-1 -right-1 bg-violet text-[10px] font-bold w-6 h-6 rounded-full flex items-center justify-center border border-white/20 shadow-[0_0_15px_rgba(112,0,255,0.4)]">0</span>
+    </button>
 
-  <script src="js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
