@@ -72,14 +72,12 @@
             class="w-full bg-white/5 border border-glass-border rounded-full py-1.5 pl-8 pr-3 text-[10px] text-white focus:outline-none focus:border-cyan transition-all">
         </div>
 
-        <nav
-          class="hidden md:flex items-center gap-6 font-header text-sm tracking-widest uppercase text-gray-400 shrink-0">
-          <a href="#product-container" class="hover:text-cyan transition-colors">Gear</a>
-          <button onclick="openTrackingModal()"
-            class="hover:text-cyan transition-colors uppercase tracking-widest text-xs font-bold border-b border-transparent hover:border-cyan">Track
-            Order</button>
-          <a href="#contact" class="hover:text-cyan transition-colors">Contact</a>
+        <a href="#product-container" class="hover:text-cyan transition-colors">Gear</a>
+        <a href="#contact" class="hover:text-cyan transition-colors">Contact</a>
         </nav>
+        <button onclick="openTrackingModal()"
+          class="hover:text-cyan transition-colors uppercase tracking-widest text-[10px] sm:text-xs font-bold border-b border-transparent hover:border-cyan shrink-0">Track
+          Order</button>
       </div>
       <button id="cart-trigger"
         class="relative p-2 glass-card rounded-full w-12 h-12 flex items-center justify-center hover:border-cyan transition-all group"
@@ -744,6 +742,13 @@
   </section>
 
   <footer class="py-10 text-center text-gray-500 text-xs border-t border-glass-border">
+    <div class="flex items-center justify-center gap-6 mb-4">
+      <button onclick="openTrackingModal()"
+        class="hover:text-accent-cyan transition-colors uppercase tracking-[0.2em] text-[9px] font-bold">Track Your
+        Order</button>
+      <a href="#faq"
+        class="hover:text-accent-cyan transition-colors uppercase tracking-[0.2em] text-[9px] font-bold">Support</a>
+    </div>
     <p>&copy; 2026 Centuryboy's Hub. All rights reserved.</p>
   </footer>
 
