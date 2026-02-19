@@ -9,13 +9,13 @@ const products = [
   { id: 3, name: "AirPods Pro", price: 160, oldPrice: 200, category: "airpods", badge: "V.1 LIMITED", img: "assets/airpods-pro-v1.jpg", rating: 4.7, stars: 4, reviewCount: 89, soldCount: 800, stock: 3, specs: { driver: "High-Excursion", battery: "4.5hrs (24hrs w/ Case)", chip: "H1 Chip", charging: "Lightning", anc: "Active" } },
   { id: 4, name: "AirPods 3", price: 170, oldPrice: 230, category: "airpods", badge: "POPULAR", img: "assets/airpods-3-new.webp", rating: 4.8, stars: 5, reviewCount: 64, soldCount: 320, stock: 15, specs: { audio: "Spatial Audio", battery: "6hrs Total", design: "Contoured", water: "IPX4", charging: "MagSafe Inc." } },
   { id: 5, name: "AirPods 4", price: 260, oldPrice: 350, category: "airpods", badge: "BUDGET", img: "assets/airpods4.jpg", rating: 4.5, stars: 4, reviewCount: 156, soldCount: 2000, stock: 20, specs: { connection: "Instant Device Switch", battery: "5hrs Talk", chip: "H1", voice: "Always-on Siri", sensor: "Optical" } },
-  { id: 6, name: "AirPods Max", price: 1800, category: "airpods", badge: "ELITE PRODUCTS", img: "assets/max.webp", rating: 5.0, stars: 5, reviewCount: 42, soldCount: 110, stock: 2, specs: { driver: "40mm Dynamic", battery: "20hrs ANC", chip: "Dual H2", charging: "L-Port", build: "Mesh/Alu" } },
+  { id: 6, name: "AirPods Max", price: 1800, category: "airpods", badge: "ELITE PRODUCTS", img: "assets/AirPods-Max-black.webp", rating: 5.0, stars: 5, reviewCount: 42, soldCount: 110, stock: 2, specs: { driver: "40mm Dynamic", battery: "20hrs ANC", chip: "Dual H2", charging: "L-Port", build: "Mesh/Alu" } },
 
   // CHARGERS & ACCESSORIES
-  { id: 7, name: "20W USB-C Charger", price: 120, category: "chargers", badge: "ORIGINAL", img: "assets/iphone charger.jpg", rating: 4.5, stars: 5, reviewCount: 310, soldCount: 5000, stock: 20, specs: { output: "20W Max", port: "USB-C", safety: "PD 3.0", design: "Folding", weight: "55g" } },
-  { id: 9, name: "Charging Cable (C to L)", price: 4, category: "chargers", badge: "MFI CERTIFIED", img: "assets/lighning cable.webp", rating: 4.4, stars: 4, reviewCount: 115, soldCount: 750, stock: 50, specs: { length: "1m", build: "Braided", certification: "MFi", speed: "480Mbps", power: "30W Max" } },
-  { id: 10, name: "Type-C to Type-C Cable", price: 60, category: "chargers", badge: "ORIGINAL", img: "assets/type c to type c.jpg", rating: 4.3, stars: 4, reviewCount: 310, soldCount: 5000, stock: 45, specs: { length: "1m", build: "TPE", power: "60W Max", speed: "USB 2.0", sync: "Yes" } },
-  { id: 11, name: "MacBook Charger", price: 350, category: "chargers", badge: "PREMIUM", img: "assets/mac charger.webp", rating: 4.7, stars: 5, reviewCount: 22, soldCount: 45, stock: 10, specs: { output: "96W PD", port: "USB-C", cables: "Not Inc.", weight: "180g", safety: "Over-Volt" } },
+  { id: 7, name: "20W USB-C Charger", price: 120, category: "chargers", badge: "ORIGINAL", img: "assets/usb-c-charger-20w.png", rating: 4.5, stars: 5, reviewCount: 310, soldCount: 5000, stock: 20, specs: { output: "20W Max", port: "USB-C", safety: "PD 3.0", design: "Folding", weight: "55g" } },
+  { id: 9, name: "Charging Cable (C to L)", price: 4, category: "chargers", badge: "MFI CERTIFIED", img: "assets/charging-cable-c-to-l.png", rating: 4.4, stars: 4, reviewCount: 115, soldCount: 750, stock: 50, specs: { length: "1m", build: "Braided", certification: "MFi", speed: "480Mbps", power: "30W Max" } },
+  { id: 10, name: "Type-C to Type-C Cable", price: 60, category: "chargers", badge: "ORIGINAL", img: "assets/type-c-to-type-c-cable.png", rating: 4.3, stars: 4, reviewCount: 310, soldCount: 5000, stock: 45, specs: { length: "1m", build: "TPE", power: "60W Max", speed: "USB 2.0", sync: "Yes" } },
+  { id: 11, name: "MacBook Charger", price: 350, category: "chargers", badge: "PREMIUM", img: "assets/macbook-charger.png", rating: 4.7, stars: 5, reviewCount: 22, soldCount: 45, stock: 10, specs: { output: "96W PD", port: "USB-C", cables: "Not Inc.", weight: "180g", safety: "Over-Volt" } },
   { id: 13, name: "MagSafe Battery Pack", price: 170, category: "accessories", badge: "HOT", img: "assets/battery pack.jpg", rating: 4.9, stars: 5, reviewCount: 18, soldCount: 104, stock: 18, specs: { capacity: "5k mAh", snap: "Instant", charging: "Pass-thru", tech: "Lithium", thickness: "11mm" } },
   { id: 21, name: "Powerbank High-Cap", price: 300, category: "accessories", badge: "WIRELESS", img: "assets/wireless powerbank.webp", rating: 4.6, stars: 4, reviewCount: 115, soldCount: 750, stock: 25, specs: { capacity: "10k mAh", wireless: "7.5W", ports: "2 Output", display: "LED Digital", weight: "220g" } },
 
@@ -163,12 +163,13 @@ function initEventListeners() {
   const cartPanel = document.getElementById('cart-panel');
 
   const toggleCart = (show) => {
+    if (!cartOverlay || !cartPanel) return;
     if (show) {
       cartOverlay.classList.remove('hidden');
       setTimeout(() => {
         cartOverlay.classList.add('opacity-100');
         cartPanel.classList.remove('translate-x-full');
-      }, 10);
+      }, 50);
     } else {
       cartOverlay.classList.remove('opacity-100');
       cartPanel.classList.add('translate-x-full');
@@ -590,12 +591,14 @@ function updateCartUI() {
   cartCount.innerText = totalItems;
 
   const trigger = document.getElementById('cart-trigger');
-  if (totalItems > 0) {
-    trigger.classList.add('cart-glow');
-    trigger.classList.add('border-accent-cyan');
-  } else {
-    trigger.classList.remove('cart-glow');
-    trigger.classList.remove('border-accent-cyan');
+  if (trigger) {
+    if (totalItems > 0) {
+      trigger.classList.add('cart-glow');
+      trigger.classList.add('border-accent-cyan');
+    } else {
+      trigger.classList.remove('cart-glow');
+      trigger.classList.remove('border-accent-cyan');
+    }
   }
 
   if (cart.length === 0) {
