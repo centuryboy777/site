@@ -647,57 +647,6 @@
   </div>
   </div>
 
-  <!-- Comparison Tray (Floating) -->
-  <div id="comparison-tray" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[90] hidden animate-fade-in">
-    <div
-      class="glass-card px-6 py-4 rounded-2xl border-accent-cyan/30 flex items-center gap-6 shadow-2xl bg-bg-surface/90">
-      <div class="flex items-center gap-3">
-        <div class="w-2 h-2 rounded-full bg-accent-cyan animate-pulse"></div>
-        <span class="text-[10px] font-bold uppercase tracking-widest text-white">Comparison Tray</span>
-      </div>
-
-      <div class="flex gap-2" id="tray-items">
-        <!-- Max 2 items slots -->
-        <div
-          class="w-12 h-12 rounded-xl border border-dashed border-white/10 flex items-center justify-center bg-white/5"
-          id="slot-0"></div>
-        <div
-          class="w-12 h-12 rounded-xl border border-dashed border-white/10 flex items-center justify-center bg-white/5"
-          id="slot-1"></div>
-      </div>
-
-      <button onclick="openComparison()" id="compare-trigger" disabled
-        class="bg-accent-cyan text-white px-6 py-2 rounded-xl font-bold text-[10px] uppercase tracking-widest disabled:opacity-30 disabled:cursor-not-allowed transition-all">
-        Compare
-      </button>
-
-      <button onclick="clearComparison()" class="text-gray-500 hover:text-white transition-colors">
-        <i class="fas fa-trash-alt text-xs"></i>
-      </button>
-    </div>
-  </div>
-
-  <!-- Comparison Modal -->
-  <div id="comparison-modal" class="fixed inset-0 z-[110] hidden items-center justify-center p-4">
-    <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeComparison()"></div>
-    <div class="glass-card w-full max-w-4xl relative z-10 overflow-hidden animate-fade-in">
-      <div class="p-8">
-        <div class="flex justify-between items-center mb-10">
-          <h2 class="font-header text-3xl font-bold uppercase">Spec <span class="text-accent-cyan">Matchup</span></h2>
-          <button onclick="closeComparison()"
-            class="w-10 h-10 rounded-full border border-glass-border flex items-center justify-center hover:bg-white/5">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-
-        <div class="overflow-x-auto">
-          <table class="w-full text-left" id="comparison-table">
-            <!-- Injected by JS -->
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Recently Viewed Section -->
   <section id="recently-viewed-section" class="container mx-auto px-4 mb-20 hidden animate-fade-in">

@@ -40,16 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCartUI();
   renderRecentlyViewed();
 
-  // Drag & Drop Comparison Tray
-  const tray = document.getElementById('comparison-tray');
-  if (tray) {
-    tray.addEventListener('dragover', (e) => e.preventDefault());
-    tray.addEventListener('drop', (e) => {
-      e.preventDefault();
-      const id = parseInt(e.dataTransfer.getData('text/plain'));
-      if (!isNaN(id)) addToCompare(id);
-    });
-  }
   const searchInput = document.getElementById('product-search');
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
@@ -62,11 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
 let activeCategory = 'all'; // Initialize activeCategory
 let pendingWhatsAppUrl = ''; // Store URL for celebration redirect
 
-// Helper for drag and drop
-window.handleDragStart = (e, productId) => {
-  e.dataTransfer.setData('text/plain', productId);
-  e.currentTarget.classList.add('dragging');
-};
 
 function renderProducts(category = 'all', query = '') {
   activeCategory = category;
@@ -123,9 +108,6 @@ function renderProducts(category = 'all', query = '') {
         <button onclick="toggleWishlist(event, ${p.id})" class="w-8 h-8 rounded-full glass-card border-glass-border flex items-center justify-center hover:bg-white/10 transition-colors">
           <i class="${wishlist.includes(p.id) ? 'fas text-accent-cyan' : 'far text-white/40'} fa-heart text-[10px]"></i>
         </button>
-        <button onclick="addToCompare(${p.id})" class="w-8 h-8 rounded-full glass-card border-glass-border flex items-center justify-center hover:bg-white/10 transition-colors">
-          <i class="fas fa-shuffle text-white/40 text-[10px]"></i>
-        </button>
       </div>
       
       <div class="aspect-square rounded-2xl bg-black/20 p-6 mb-4 flex items-center justify-center relative overflow-hidden group-hover:bg-black/30 transition-all">
@@ -142,10 +124,6 @@ function renderProducts(category = 'all', query = '') {
       </div>
 
       <div class="mb-4">
-        <div class="flex items-center gap-1 mb-1">
-          ${starsHtml}
-          <span class="text-[9px] text-gray-500 ml-1">(${p.reviewCount})</span>
-        </div>
         <h3 class="font-header text-sm font-bold truncate">${p.name}</h3>
         <p class="text-[9px] text-gray-400 font-mono tracking-widest uppercase mt-1">
           Verified Tech Drop
@@ -168,7 +146,7 @@ function renderProducts(category = 'all', query = '') {
       </div>
       
       <button onclick="openSpecsModal(${p.id})" class="w-full mt-4 py-2 rounded-xl border border-glass-border text-[9px] font-bold uppercase tracking-[0.3em] text-gray-400 hover:text-white hover:bg-white/5 transition-all">
-        The Specs
+        VIEW SPECS
       </button>
     `;
     container.appendChild(card);
@@ -399,100 +377,6 @@ window.closeSpecsModal = () => {
   document.getElementById('specs-modal').classList.remove('flex');
 };
 
-// FEATURE 7: AirPods Comparison Tool
-let compareList = [];
-
-window.addToCompare = (productId) => {
-  if (compareList.includes(productId)) return showToast("Already in comparison", "info");
-  if (compareList.length >= 2) return showToast("Comparison limited to 2 items", "info");
-
-  const product = products.find(p => p.id === productId);
-  compareList.push(productId);
-  updateComparisonUI();
-  showToast(`Added ${product.name} to Compare`, "success");
-};
-
-window.removeFromCompare = (productId) => {
-  compareList = compareList.filter(id => id !== productId);
-  updateComparisonUI();
-};
-
-window.clearComparison = () => {
-  compareList = [];
-  updateComparisonUI();
-};
-
-function updateComparisonUI() {
-  const tray = document.getElementById('comparison-tray');
-  if (compareList.length > 0) {
-    tray.classList.add('flex');
-    tray.classList.remove('hidden');
-  } else {
-    tray.classList.add('hidden');
-    tray.classList.remove('flex');
-  }
-
-  // Update Slots
-  for (let i = 0; i < 2; i++) {
-    const slot = document.getElementById(`slot-${i}`);
-    if (compareList[i]) {
-      const product = products.find(p => p.id === compareList[i]);
-      slot.innerHTML = `<img src="${product.img}" class="tray-slot-img" onclick="removeFromCompare(${product.id})">`;
-      slot.classList.remove('border-dashed');
-      slot.classList.add('border-solid');
-    } else {
-      slot.innerHTML = '';
-      slot.classList.add('border-dashed');
-      slot.classList.remove('border-solid');
-    }
-  }
-
-  document.getElementById('compare-trigger').disabled = compareList.length < 2;
-}
-
-window.openComparison = () => {
-  if (compareList.length < 2) return;
-  const p1 = products.find(p => p.id === compareList[0]);
-  const p2 = products.find(p => p.id === compareList[1]);
-
-  const table = document.getElementById('comparison-table');
-
-  // Get all unique spec keys
-  const allKeys = [...new Set([...Object.keys(p1.specs || {}), ...Object.keys(p2.specs || {})])];
-
-  table.innerHTML = `
-        <thead>
-            <tr class="compare-table-head">
-                <th class="py-4 text-gray-500 font-mono text-[10px] uppercase">Technical Spec</th>
-                <th class="py-4 text-center">
-                    <img src="${p1.img}" class="w-16 h-16 mx-auto mb-2 object-contain">
-                    <div class="text-xs font-bold uppercase">${p1.name}</div>
-                </th>
-                <th class="py-4 text-center">
-                    <img src="${p2.img}" class="w-16 h-16 mx-auto mb-2 object-contain">
-                    <div class="text-xs font-bold uppercase">${p2.name}</div>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            ${allKeys.map(key => `
-                <tr class="compare-row">
-                    <td class="py-4 text-gray-400 font-mono text-[9px] uppercase tracking-wider">${key.replace(/([A-Z])/g, ' $1')}</td>
-                    <td class="py-4 text-center text-sm font-bold text-white uppercase">${p1.specs?.[key] || '—'}</td>
-                    <td class="py-4 text-center text-sm font-bold text-white uppercase">${p2.specs?.[key] || '—'}</td>
-                </tr>
-            `).join('')}
-        </tbody>
-    `;
-
-  document.getElementById('comparison-modal').classList.add('flex');
-  document.getElementById('comparison-modal').classList.remove('hidden');
-};
-
-window.closeComparison = () => {
-  document.getElementById('comparison-modal').classList.add('hidden');
-  document.getElementById('comparison-modal').classList.remove('flex');
-};
 
 
 // FEATURE 8: Order Success Celebration
