@@ -101,7 +101,7 @@ function renderProducts(category = 'all', query = '') {
           ${p.badge}
         </span>
         ${p.oldPrice ? `
-          <span class="sale-badge ml-2">PROMO</span>
+          <span class="sale-badge ml-2">SALE</span>
         ` : ''}
       </div>
       <div class="absolute top-4 right-4 z-10 flex flex-col gap-2">

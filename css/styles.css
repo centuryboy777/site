@@ -144,11 +144,35 @@ body {
 }
 
 
-.holographic-text {
-  background: var(--gradient-holo);
+.holographic-text,
+.price-new {
+  background: linear-gradient(90deg, #00F0FF, #7000FF);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.price-old {
+  text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.8rem;
+  margin-bottom: -2px;
+}
+
+.sale-badge {
+  background: rgba(112, 0, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(112, 0, 255, 0.3);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(112, 0, 255, 0.5);
 }
 
 .holographic-btn {
