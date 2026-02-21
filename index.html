@@ -7,12 +7,21 @@
   <title>Centuryboy's Hub | Premium Tech</title>
   <meta name="description"
     content="Premium tech drops, AirPods, Playstation products, and high-performance chargers. Secure GHS payments and nationwide delivery in Ghana." />
-  <!-- External Resources -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- External Resources (Optimized for Performance) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap"
     rel="stylesheet" />
+
+  <!-- Load FontAwesome with low priority to prevent render-blocking -->
+  <link rel="preload" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </noscript>
+
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="css/styles.css" />
   <script src="https://js.paystack.co/v1/inline.js"></script>
   <script>
@@ -843,9 +852,14 @@
     </button>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/233540639091" target="_blank" rel="noopener" class="whatsapp-float">
-      <i class="fab fa-whatsapp text-2xl"></i>
-
+    <a href="https://wa.me/233540639091" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp"
+      class="whatsapp-float group flex items-center gap-2">
+      <div class="relative flex items-center justify-center w-full h-full">
+        <span
+          class="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-20 group-hover:animate-ping wa-ping-dot"></span>
+        <i class="fab fa-whatsapp text-2xl relative z-10" aria-hidden="true"></i>
+      </div>
+      <span class="text-sm font-bold pr-4 hidden group-hover:block transition-all whitespace-nowrap">Chat with us</span>
     </a>
 
     <!-- Sticky Mobile Checkout Bar -->

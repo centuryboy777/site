@@ -32,7 +32,14 @@ const products = [
   { id: 23, name: "AI Face Tracking Quadrapod", price: 280, category: "videography", badge: "PROMO", img: "assets/quadrapod.webp", rating: 4.5, stars: 4, reviewCount: 31, soldCount: 85, stock: 20, specs: { rotation: "360 Loop", tracking: "AI Vision", mount: "Tripod Opt", battery: "15hrs", payload: "3kg" } }
 ];
 
-let cart = JSON.parse(localStorage.getItem('cb_cart')) || [];
+let cart = [];
+try {
+  const savedCart = localStorage.getItem('cb_cart');
+  if (savedCart) cart = JSON.parse(savedCart);
+} catch (e) {
+  console.error("Error parsing cart data from localStorage:", e);
+  cart = [];
+}
 
 // ── Theme System ──────────────────────────────────────────────
 (function initTheme() {
