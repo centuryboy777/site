@@ -25,8 +25,8 @@ const products = [
   { id: 16, name: "PlayStation 5 Slim", price: 7500, category: "gaming", badge: "NEW ARRIVAL", img: "assets/ps5 slim.webp", rating: 5.0, stars: 5, reviewCount: 24, soldCount: 12, stock: 4, specs: { storage: "1TB SSD", resolution: "4K 120Hz", type: "Disc/Digital", build: "Compact", tech: "Ray Tracing" } },
   { id: 17, name: "PlayStation 5 Standard", price: 6500, category: "playstation", badge: "IN STOCK", img: "assets/standard.webp", rating: 4.9, stars: 5, reviewCount: 19, soldCount: 7, stock: 7, specs: { storage: "825GB SSD", resolution: "4K HDR", controllers: "1 Inc.", port: "HDMI 2.1", tech: "Tempest 3D" } },
   { id: 18, name: "PlayStation 5 Pro", price: 9000, category: "playstation", badge: "PREMIUM", img: "assets/ps5 pro.webp", rating: 5.0, stars: 5, reviewCount: 4, soldCount: 2, stock: 3, specs: { storage: "2TB SSD", resolution: "8K 60Hz", pssr: "AI Scaling", gpu: "Enhanced", build: "Pro Tower" } },
-  { id: 19, name: "PS5 DualSense Controller", price: 850, category: "controllers", badge: "ORIGINAL", img: "assets/ps5 control.webp", rating: 4.8, stars: 5, reviewCount: 56, soldCount: 210, stock: 12, specs: { haptics: "Adaptive Triggers", feedback: "Haptic", battery: "1560mAh", tech: "Bluetooth 5.1", weight: "280g" } },
-  { id: 20, name: "PS4 DualShock 4", price: 450, category: "controllers", badge: "BEST SELLER", img: "assets/ps4 controller.webp", rating: 4.7, stars: 5, reviewCount: 92, soldCount: 450, stock: 15, specs: { touch: "2-Point Pad", light: "Integrated Bar", battery: "1000mAh", tech: "Bluetooth 2.1", weight: "210g" } },
+  { id: 19, name: "PS5 DualSense Controller", price: 1050, category: "controllers", badge: "ORIGINAL", img: "assets/ps5 control.webp", rating: 4.8, stars: 5, reviewCount: 56, soldCount: 210, stock: 12, specs: { haptics: "Adaptive Triggers", feedback: "Haptic", battery: "1560mAh", tech: "Bluetooth 5.1", weight: "280g" } },
+  { id: 20, name: "PS4 DualShock 4", price: 160, category: "controllers", badge: "BEST SELLER", img: "assets/ps4 controller.webp", rating: 4.7, stars: 5, reviewCount: 92, soldCount: 450, stock: 15, specs: { touch: "2-Point Pad", light: "Integrated Bar", battery: "1000mAh", tech: "Bluetooth 2.1", weight: "210g" } },
 
   // VIDEOGRAPHY
   { id: 23, name: "AI Face Tracking Quadrapod", price: 280, category: "videography", badge: "PROMO", img: "assets/quadrapod.webp", rating: 4.5, stars: 4, reviewCount: 31, soldCount: 85, stock: 20, specs: { rotation: "360 Loop", tracking: "AI Vision", mount: "Tripod Opt", battery: "15hrs", payload: "3kg" } }
@@ -34,7 +34,41 @@ const products = [
 
 let cart = JSON.parse(localStorage.getItem('cb_cart')) || [];
 
+// ── Theme System ──────────────────────────────────────────────
+(function initTheme() {
+  const saved = localStorage.getItem('cb_theme') || 'dark';
+  if (saved === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+
+window.toggleTheme = () => {
+  const html = document.documentElement;
+  const icon = document.getElementById('theme-icon');
+  const isLight = html.getAttribute('data-theme') === 'light';
+
+  if (isLight) {
+    html.removeAttribute('data-theme');
+    localStorage.setItem('cb_theme', 'dark');
+    if (icon) { icon.className = 'fas fa-sun'; }
+    document.getElementById('theme-toggle')?.setAttribute('title', 'Switch to Light Mode');
+  } else {
+    html.setAttribute('data-theme', 'light');
+    localStorage.setItem('cb_theme', 'light');
+    if (icon) { icon.className = 'fas fa-moon'; }
+    document.getElementById('theme-toggle')?.setAttribute('title', 'Switch to Dark Mode');
+  }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Sync icon with current saved theme
+  const saved = localStorage.getItem('cb_theme') || 'dark';
+  const icon = document.getElementById('theme-icon');
+  const btn = document.getElementById('theme-toggle');
+  if (icon) icon.className = saved === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+  if (btn) btn.setAttribute('title', saved === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode');
+  if (btn) btn.addEventListener('click', window.toggleTheme);
+
   renderProducts('all');
   initEventListeners();
   updateCartUI();
@@ -48,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
 
 let activeCategory = 'all'; // Initialize activeCategory
 let pendingWhatsAppUrl = ''; // Store URL for celebration redirect
@@ -96,13 +131,17 @@ function renderProducts(category = 'all', query = '') {
     ).join('');
 
     card.innerHTML = `
-      <div class="absolute top-4 left-4 z-10">
+      <div class="absolute top-4 left-4 z-10 flex flex-col gap-1">
         <span class="px-3 py-1 bg-black/60 backdrop-blur-md rounded-full text-[8px] font-bold border border-glass-border tracking-widest uppercase text-white/90">
           ${p.badge}
         </span>
-        ${p.oldPrice ? `
-          <span class="sale-badge ml-2">SALE</span>
-        ` : ''}
+        ${p.oldPrice ? `<span class="sale-badge mt-1">SALE</span>` : ''}
+      </div>
+      <!-- 🟢 100% Authentic Shield -->
+      <div class="absolute bottom-4 left-4 z-10">
+        <span class="flex items-center gap-1 px-2 py-1 bg-green-500/20 border border-green-500/40 rounded-full text-[7px] font-bold text-green-400 uppercase tracking-widest backdrop-blur-sm">
+          <i class="fas fa-shield-halved text-[8px]"></i> 100% Authentic
+        </span>
       </div>
       <div class="absolute top-4 right-4 z-10 flex flex-col gap-2">
         <button onclick="toggleWishlist(event, ${p.id})" class="w-8 h-8 rounded-full glass-card border-glass-border flex items-center justify-center hover:bg-white/10 transition-colors">
@@ -111,32 +150,47 @@ function renderProducts(category = 'all', query = '') {
       </div>
       
       <div class="aspect-square rounded-2xl bg-black/20 p-6 mb-4 flex items-center justify-center relative overflow-hidden group-hover:bg-black/30 transition-all">
-        <img src="${p.img}" alt="${p.name}" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500">
+        <img src="${p.img}" alt="${p.name}" loading="lazy" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500">
       </div>
 
-      <div class="mb-4">
-        <h3 class="font-header text-sm font-bold truncate">${p.name}</h3>
-        <p class="text-[9px] text-gray-400 font-mono tracking-widest uppercase mt-1">
-          Verified Tech Drop
-        </p>
+      <div class="mb-3">
+        <h3 class="font-header text-[15px] font-bold truncate">${p.name}</h3>
+        <div class="flex items-center gap-1 mt-1">
+          <div class="flex items-center">
+            ${starsHtml}
+          </div>
+          <span class="text-[9px] text-gray-400 font-mono tracking-widest ml-1">${p.rating} (${p.reviewCount})</span>
+        </div>
       </div>
 
-      <div class="flex items-center justify-between mt-auto">
+      <div class="flex flex-col mt-auto gap-3">
         <div class="flex flex-col">
           ${p.oldPrice ? `
             <span class="price-old">GHS ${p.oldPrice.toLocaleString()}</span>
             <span class="price-new">GHS ${p.price.toLocaleString()}</span>
           ` : `
-            <span class="text-lg font-bold">GHS ${p.price.toLocaleString()}</span>
+            <span class="price-new">GHS ${p.price.toLocaleString()}</span>
           `}
+          <!-- 💳 MoMo icons below price -->
+          <div class="flex items-center gap-2 mt-2 flex-wrap">
+            <span class="text-[9px] font-bold px-2 py-0.5 rounded-full border" style="color: #FFCC00; border-color: rgba(255,204,0,0.3); background: rgba(255,204,0,0.08);">MTN MoMo</span>
+            <span class="text-[9px] font-bold px-2 py-0.5 rounded-full border" style="color: #E60000; border-color: rgba(230,0,0,0.3); background: rgba(230,0,0,0.08);">Telecel</span>
+            <span class="text-[9px] font-bold px-2 py-0.5 rounded-full border" style="color: #5599CC; border-color: rgba(85,153,204,0.3); background: rgba(85,153,204,0.08);">AirtelTigo</span>
+          </div>
         </div>
-        <button onclick="addToCart(event, ${p.id})" class="h-10 px-4 rounded-xl bg-accent-cyan text-white flex items-center gap-2 shadow-[0_0_15px_rgba(37,99,255,0.4)] hover:scale-105 transition-all ${p.stock === 0 ? 'opacity-50 cursor-not-allowed' : ''}" ${p.stock === 0 ? 'disabled' : ''}>
-          <i class="fas fa-plus text-xs"></i>
-          <span class="text-[10px] font-bold uppercase tracking-widest">Add to Cart</span>
+        
+        <div class="flex flex-col gap-1 my-1 opacity-80">
+          <span class="text-[9px] font-bold text-green-400 tracking-widest uppercase"><i class="fas fa-truck-fast mr-1"></i> Delivery in 1-3 Days</span>
+          ${p.soldCount > 100 ? `<span class="text-[9px] font-bold text-accent-cyan tracking-widest uppercase"><i class="fas fa-fire mr-1"></i> Best Seller in Accra</span>` : ''}
+          ${p.stock < 10 && p.stock > 0 ? `<span class="text-[9px] font-bold text-red-400 tracking-widest uppercase"><i class="fas fa-bolt mr-1"></i> Only ${p.stock} left</span>` : ''}
+        </div>
+
+        <button onclick="addToCart(event, ${p.id})" style="min-height:60px; font-size:15px; font-weight:800; letter-spacing:0.05em;" class="w-full holographic-btn shadow-[0_0_20px_rgba(37,99,255,0.5)] active:scale-95 ${p.stock === 0 ? 'opacity-50 cursor-not-allowed' : ''}" ${p.stock === 0 ? 'disabled' : ''}>
+          <i class="fas fa-cart-plus mr-2"></i> ADD TO CART
         </button>
       </div>
       
-      <button onclick="openSpecsModal(${p.id})" class="w-full mt-4 py-2 rounded-xl border border-glass-border text-[9px] font-bold uppercase tracking-[0.3em] text-gray-400 hover:text-white hover:bg-white/5 transition-all">
+      <button onclick="openSpecsModal(${p.id})" class="w-full mt-3 py-3 rounded-xl border border-glass-border text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 hover:text-white hover:bg-white/5 transition-all">
         VIEW SPECS
       </button>
     `;
@@ -484,11 +538,9 @@ window.processCheckout = () => {
   const mode = document.getElementById('checkout-mode').value;
   const name = document.getElementById('checkout-name').value.trim();
   const email = document.getElementById('checkout-email').value.trim();
-  const location = document.getElementById('checkout-location').value.trim();
 
   if (!name) return showToast("Please enter your full name.", "error");
   if (!email || !email.includes('@')) return showToast("Please enter a valid email address.", "error");
-  if (!location) return showToast("Please enter your delivery location.", "error");
 
   const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const hasAirPods = cart.some(i => i.category === 'airpods');
@@ -505,8 +557,7 @@ window.processCheckout = () => {
       ref: 'CBH_' + Math.floor((Math.random() * 1000000000) + 1),
       metadata: {
         custom_fields: [
-          { display_name: "Customer Name", variable_name: "customer_name", value: name },
-          { display_name: "Delivery Location", variable_name: "delivery_location", value: location }
+          { display_name: "Customer Name", variable_name: "customer_name", value: name }
         ]
       },
       callback: function (response) {
@@ -521,10 +572,10 @@ window.processCheckout = () => {
     closeCheckoutModal();
   } else {
     // WhatsApp Mode
-    const message = `*NEW ORDER - CENTURYBOY'S HUB*%0A%0A` +
+    const message = `*NEW VIP ORDER - CENTURYBOY'S HUB*%0A%0A` +
       `*Customer:* ${name}%0A` +
-      `*Location:* ${location}%0A%0A` +
-      `*Items:*%0A${cart.map(i => `- ${i.name} (x${i.quantity})`).join('%0A')}%0A%0A` +
+      `*Email:* ${email}%0A%0A` +
+      `*Items Requested:*%0A${cart.map(i => `- ${i.name} (x${i.quantity})`).join('%0A')}%0A%0A` +
       (discount > 0 ? `*Combo Discount:* -GHS ${discount}%0A` : '') +
       `*Total: GHS ${finalTotalAmount.toLocaleString()}*%0A%0A` +
       `Please confirm my order.`;
@@ -665,6 +716,19 @@ function updateCartUI() {
       <span class="text-lg">GHS ${finalTotal.toLocaleString()}.00</span>
     </div>
   `;
+
+  // Update sticky checkout bar
+  const stickyCheckout = document.getElementById('sticky-checkout');
+  const stickyTotal = document.getElementById('sticky-checkout-total');
+
+  if (stickyCheckout && stickyTotal) {
+    if (totalItems > 0) {
+      stickyTotal.innerText = finalTotal.toLocaleString() + '.00';
+      stickyCheckout.classList.add('visible');
+    } else {
+      stickyCheckout.classList.remove('visible');
+    }
+  }
 }
 
 window.changeQty = (id, delta) => {
